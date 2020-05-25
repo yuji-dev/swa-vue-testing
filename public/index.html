@@ -17,7 +17,7 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app">
-      <button v-on:click="shuffle">shuffle</button>
+      <button v-on:click="shuffle">[shuffle]</button>
       <transition-group name="flip-list">
           <li v-for="pref in prefs" v-bind:key="pref.name">
               {{ pref.name }}
