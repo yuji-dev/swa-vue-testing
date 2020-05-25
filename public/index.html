@@ -6,12 +6,44 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      .flip-list-move {
+          transition: transform .5s;
+      }
+  </style>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <button v-on:click="shuffle">shuffle</button>
+      <transition-group name="flip-list">
+          <li v-for="pref in prefs" v-bind:key="pref.name">
+              {{ pref.name }}
+          </li>
+      </transition-group>
+    </div>
     <!-- built files will be auto injected -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                prefs: [
+                    {name:　'愛知県'},
+                    {name:　'岐阜県'},
+                    {name:　'三重県'},
+                    {name:　'静岡県'},
+                ]
+            },
+            methods: {
+                shuffle: function() {
+                    this.prefs = _.shuffle(this.prefs);
+                }
+            }
+        })
+    </script>
   </body>
 </html>
